@@ -39,7 +39,7 @@
 <div class="bg-1">
   <div class="container">
     <h3 class="text-center text-primary font-weight-bold">WELCOME</h3>
-    <p class="text-center">To PHP data manipulation by CRUD .<br> Create, Read, Update, and Delete</p>
+    <p class="text-center">To PHP data manipulation by CRUD .<br> Create, Read, Update, and Delete <br>By using OOPS and MVC</p>
     <ul class="list-group">
       <li class="list-group-item">If you are new User then click on below registor button for Registration. </li>
       <li class="list-group-item"><a class="btn btn-primary text-center" href="view\signup.php" role="button" style= padding: 20px ;>registor</a></li>
