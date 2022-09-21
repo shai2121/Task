@@ -7,9 +7,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 
-?>
 
-<!DOCTYPE html>
+
+echo '<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -33,8 +33,20 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 </style>  
 
 </head>
-  <body>
-  <div class="container">
+  <body>';
+  if(isset( $_SESSION['error'])){
+    echo ' <div class="alert alert-'.$_SESSION['error'].' '.
+     'alert-dismissible fade show" role="alert"><strong>'.$_SESSION['TYPE'].
+           '!</strong>' .$_SESSION['massage'] .
+           '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+          </button>
+      </div> ';
+      $_SESSION['error']=NULL;
+  }
+
+
+  echo '<div class="container">
   
  
   <form  class =" solid col-4 p-4 px-5" method= "post" action="..\controler\datasubmitting.php" >
@@ -45,13 +57,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
       <input type="password" class="form-control" id="pass" placeholder="Enter new password " name="Pass" required>
     </div>
     <div class="form-group">
-      <label for="pwd">Re-Enter Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="RE-Enter new password" name="pswd" required>
+      <label for="pwd">Confirm Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Confirm new password" name="pswd" required>
     </div>
     
-    <button type="submit" class="btn btn-primary " name= "Cpassword" >Change Password</button>
+    <button type="submit" class="btn btn-primary " name= "Cpassword" >Update Password</button>
    
   </form>
 </div>
 </body>
-</html>
+</html>';
+
+?>

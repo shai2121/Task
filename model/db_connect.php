@@ -39,11 +39,23 @@ class connection{
            }
          else
           {
-            header("location: ../view/login.php"); 
+            session_start();
+      $_SESSION['loggedin'] = NULL;
+      $_SESSION['error']='success';
+      $_SESSION['TYPE'] ='Success!';
+      $_SESSION['massage']='Your account is now created and you can login ';
+      
+      header("location: ../view/login.php");
           }
         }
         else{
-          echo "you aleady have an account. ";
+          session_start();
+      $_SESSION['loggedin'] = NULL;
+      $_SESSION['error']='info';
+      $_SESSION['TYPE'] ='Information!';
+      $_SESSION['massage']='You already have an account please login ';
+      
+      header("location: ../view/signup.php");
         }
   }
    
@@ -73,13 +85,27 @@ class connection{
          header("location: ../view\profile.php"); 
          }
          else {
-          echo "Wrong password";
+          session_start();
+          $_SESSION['loggedin'] =NULL;
+          
+          $_SESSION['error']='danger';
+          $_SESSION['TYPE'] ='Warning!';
+          $_SESSION['massage']='Wrong Password';
+          
+          header("location: ../view/login.php"); 
+          
+          
         }
       }
     }
      else {
-    echo "Invalid Email id please Registor firstly.";
-   
+      session_start();
+      $_SESSION['loggedin'] = NULL;
+      $_SESSION['error']='danger';
+      $_SESSION['TYPE'] ='Warning!';
+      $_SESSION['massage']='Invalid Email id please Register';
+      
+      header("location: ../view/login.php"); 
       }
    
    }
@@ -94,14 +120,20 @@ class connection{
     $sql = "DELETE FROM `persondetail` WHERE email = '$usermail'";
     $result = mysqli_query($conn,$sql);
     if ( $result){
-      session_unset();
-      session_destroy();
-      header("location: ../view\login.php");  
+      session_start();
+      $_SESSION['loggedin'] =NULL;
+      $_SESSION['error']='info';
+      $_SESSION['TYPE'] ='Info!';
+      $_SESSION['massage']='Your account is now deleted';
+      
+      header("location: ../view/login.php"); 
+      
+      
     }
   }
  
    }
-    // function for update:-
+    // function for profile update:-
     function nupdate($finame,$laname,$cn,$fn){
     $conn=$this->conn();
      $usermail=$_SESSION['email'];
@@ -113,7 +145,7 @@ class connection{
       $call=$this->login($usermail,$password);
     }
   }
-  // function for contect no update:-
+  // function for  picture update:-
   function dtupdate($fn,$cn){
     $conn=$this->conn();
     $usermail=$_SESSION['email'];
@@ -122,6 +154,7 @@ class connection{
    $sql = "UPDATE `persondetail` SET `$fn` = '$cn' WHERE email = '$usermail' ";
    $result = mysqli_query($conn,$sql);
    if ( $result){
+    
      $call=$this->login($usermail,$password);
     }
     }
@@ -134,10 +167,14 @@ class connection{
   $sql = "UPDATE `persondetail` SET `$fn` = '$cn' WHERE email = '$usermail' ";
   $result = mysqli_query($conn,$sql);
   if ( $result){
-
-    session_destroy();
-      header("location: ../view\login.php");
-
+    session_start();
+      $_SESSION['loggedin'] = NULL;
+      $_SESSION['error']='success';
+      $_SESSION['TYPE'] ='Info!';
+      $_SESSION['massage']='password changed successfully';
+      
+      header("location: ../view/login.php"); 
+    
   }
  }
 

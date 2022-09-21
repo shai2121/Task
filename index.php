@@ -1,3 +1,12 @@
+
+<?php
+session_start();
+if(isset( $_SESSION['loggedin'])){
+  header("location: view/profile.php");
+  exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +50,11 @@
     <h3 class="text-center text-primary font-weight-bold">WELCOME</h3>
     <p class="text-center">To PHP data manipulation by CRUD .<br> Create, Read, Update, and Delete <br>By using OOPS and MVC</p>
     <ul class="list-group">
-      <li class="list-group-item">If you are new User then click on below registor button for Registration. </li>
-      <li class="list-group-item"><a class="btn btn-primary text-center" href="view\signup.php" role="button" style= padding: 20px ;>registor</a></li>
+      <li class="list-group-item">If you are new User then click on below register button for Registration. </li>
+      <li class="list-group-item"><a class="btn btn-primary text-center" href="view\signup.php" role="button" style= padding: 20px ;>Register</a></li>
       <li class="list-group-item"></li>
       <li class="list-group-item">IF you have already un account then click below for log in</li>
-      <li class="list-group-item"><a class="btn btn-primary text-center" href="view\login.php" role="button">login</a></li>
+      <li class="list-group-item"><a class="btn btn-primary text-center" href="view\login.php" role="button">Login</a></li>
     
  
 

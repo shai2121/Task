@@ -1,3 +1,12 @@
+<?php 
+session_start();
+ if(isset( $_SESSION['loggedin'])){
+ header("location: profile.php");
+   exit;
+}
+
+
+echo '
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,12 +24,24 @@
   }
   </style>
 </head>
-  <body>
-  <div class="container my-4">
+  <body>';
+
+  if(isset( $_SESSION['error'])){
+    echo ' <div class="alert alert-'.$_SESSION['error'].' '.
+     'alert-dismissible fade show" role="alert"><strong>'.$_SESSION['TYPE'].
+           '!</strong>' .$_SESSION['massage'] .
+           '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+          </button>
+      </div> ';
+  }
+     session_unset();
+     session_destroy();
+
+ echo ' <div class="container my-4">
 
   <div class="border p-4 px-5">
   <h2 class="text-primary text-center">Registration form</h2>
-  
   
   <form method= "post" action="..\controler\datasubmitting.php" enctype="multipart/form-data" >
 
@@ -42,7 +63,7 @@
 
     <div class="form-group">
       <label for="contect">Phone No:</label>
-      <input type="contect-no" class="form-control" id="contect" placeholder="contect no" name="contect">
+      <input type="contect-no" class="form-control" titile ="contect no must be only 10digit." maxlength="10" pattern="[0-9]{10}" id="contect" placeholder="contect no" name="contect">
     </div>
     <div class="form-groups">
       <label for="pic">Pofile picture:</label>
@@ -51,6 +72,10 @@
     <div class="form-group">
       <label for="pswd">Password:</label>
       <input type="password" class="form-control" id="pswd" placeholder="password" name="pswd" required>
+    </div>
+    <div class="form-group">
+      <label for="cpswd"> conform Password:</label>
+      <input type="password" class="form-control" id="cpswd" placeholder="password" name="cpswd" required>
     </div>
 
     <div class="form-group">
@@ -68,4 +93,5 @@
   
 </div>
 </body>
-</html>
+</html>';
+?>

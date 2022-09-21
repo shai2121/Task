@@ -13,13 +13,29 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
        $email= $_POST['email'];
        $contect= $_POST['contect'];
        $pass= $_POST['pswd'];
+       $cpass=$_POST['cpswd'];
        $desc= $_POST['desc'];
        $pic_name=$_FILES['pic']['name'];
          $tmp_loc=$_FILES['pic']['tmp_name'];
         $folder="../image/".$pic_name;
         move_uploaded_file($tmp_loc,$folder);
+        
+        if($pass == $cpass){
+          if($_FILES['pic']['size']== 0){
+              $folder="../image/defolt_1.png";
+    
+        }
         $rum = new connection();
         $erp=$rum->registor($Fname,$Lname, $email, $contect, $desc, $pass,$folder);
+        }
+        else{
+          session_start();
+          
+          $_SESSION['error']='danger';
+          $_SESSION['TYPE'] ='Warning!';
+          $_SESSION['massage']='Both password do not match please try again.';
+          header("location: ../view\signup.php");
+        }
 
     }
 
@@ -52,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 
 
-    // logic for name update :-
+    // logic for detail update :-
     if(isset($_POST['update'])){
       $finame= $_POST['finame'];
       $laname= $_POST['laname'];
@@ -78,8 +94,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
        $wem=$shai->pupdate($fn,$hash);
     }
     else{
-      echo "Both password do not match please re-enter the password "; 
-
+      
+      $_SESSION['error']='danger';
+      $_SESSION['TYPE'] ='Warning!';
+      $_SESSION['massage']='Both password do not match please try again.';
+      header("location: ../view/password.php"); 
     }
   }
   
@@ -92,11 +111,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
      move_uploaded_file($tmp_loc,$fold);
      $fn='pic';
      session_start();
-
+     if($_FILES['picr']['size']== 0){
+      header("location: ../view\profile.php"); 
+     }
+ else{
      $shai = new connection();
     $wem=$shai->dtupdate($fn,$fold); 
 
      }
+    }
         
 
 

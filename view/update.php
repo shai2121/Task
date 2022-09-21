@@ -45,7 +45,7 @@ else {
     
     <div class="form-group">
       <label for="contect">Update contact no:</label>
-      <input type="contect-no" class="form-control" id="contect" value= "<?php echo $_SESSION['contect'] ;?>" placeholder="contect no" name="contect">
+      <input type="contect-no" class="form-control" maxlength="10" pattern="[0-9]{10}" id="contect" value= "<?php echo $_SESSION['contect'] ;?>" placeholder="contect no" name="contect">
     </div>
    
     <div class="form-group">

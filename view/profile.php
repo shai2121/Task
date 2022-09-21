@@ -46,15 +46,20 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   </style>
 </head>
 <body>
-<div class="main">
+
+
+
 <div class="bg-1">
   <div class="container">
+  
+
     <h3 class="text-center text-primary font-weight-bold">PROFILE DETAIL</h3>
     <p class="text-center">hii <strong class="font-weight-bold text-success"> <?php echo $_SESSION['fname'];?></strong>,wlcome to your profile page .<br> Here below find your profile details!</p>
     
     <div class="text-center xtz">
     <span class="rounded">
-      <img src="<?php echo $_SESSION["pic"] ;?>" class="rounded-circle   text-center" style="width:160px;height:170px;" alt="">
+
+     <img src="<?php echo $_SESSION['pic'];?> " class="rounded-circle   text-center" style="width:160px;height:170px;" alt=""> 
       </span>
     </div>
     <ul class="list-group">
@@ -62,7 +67,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
       <li class="list-group-item">Name:- <?php echo $_SESSION['fname']." ".$_SESSION['lname'] ;?></li>
       <li class="list-group-item"> Email Id :-<?php echo $_SESSION['email'] ;?></li>
       <li class="list-group-item">Phone No :- <?php echo $_SESSION['contect'] ;?></li>
-      <li class="list-group-item"> About :-<?php echo $_SESSION['about'] ;?></li>
+      <li class="list-group-item"> About :-<?php echo $_SESSION['about'] ;?>'</li>
 
       
       <li class="list-group-item">
@@ -70,7 +75,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 <button type="submit" name="delete" class="btn btn-primary">Delete</button>
 <button type="submit" name="logout" class="btn btn-primary">Logout</button>
 <a class="btn btn-primary" href="update.php" role="button">Edit Profile</a>
-<a class="btn btn-primary" href="password.php" role="button">Reset-Password</a>
+<a class="btn btn-primary" href="password.php" role="button">Update-Password</a>
 </form>
 
 </li> 

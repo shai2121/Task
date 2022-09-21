@@ -1,3 +1,13 @@
+<?php
+ session_start();
+ if(isset( $_SESSION['loggedin'])){
+  header("location: profile.php");
+  exit;
+}
+ 
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +33,22 @@
 </style>
 </head>
 <body>
-  <div class="container">
+<?php
+
+if(isset( $_SESSION['error'])){
+  echo ' <div class="alert alert-'.$_SESSION['error'].' '.
+   'alert-dismissible fade show" role="alert"><strong>'.$_SESSION['TYPE'].
+         '!</strong>' .$_SESSION['massage'] .
+         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div> ';
+}
+   session_unset();
+   session_destroy();
+?>
+ <div class="container">
+
  
   <form  class =" solid col-6 p-4 px-5" method= "post" action="..\controler\datasubmitting.php" >
   <h2 class = " text-primary text-center font-weight-bold">Welcome to login page</h2>
@@ -38,8 +63,7 @@
     </div>
     
     <button type="submit" class="btn btn-primary" name= "logon" >Login</button>
-    <button type="Reset" class="btn btn-primary">Reset</button>
-    <a class="btn btn-primary" href="signup.php" role="button">registor</a>
+    <a class="btn btn-primary" href="signup.php" role="button">Register</a>
   </form>
   </div>
   </body>
