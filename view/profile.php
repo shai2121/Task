@@ -63,7 +63,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
       </span>
     </div>
     <ul class="list-group">
-      <li class="list-group-item">You have loged in into system on <?php echo date("l,Y-m-d")."at" .date("h:i:sa");?></li>
+      <li class="list-group-item">You have loged in into system on <?php date_default_timezone_set('Asia/Kolkata'); echo date('d-m-y h:i:s');?></li>
       <li class="list-group-item">Name:- <?php echo $_SESSION['fname']." ".$_SESSION['lname'] ;?></li>
       <li class="list-group-item"> Email Id :-<?php echo $_SESSION['email'] ;?></li>
       <li class="list-group-item">Phone No :- <?php echo $_SESSION['contect'] ;?></li>
